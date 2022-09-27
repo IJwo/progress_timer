@@ -1,4 +1,5 @@
 from time import sleep
+from tkinter import Y
 
 class Tea():
     def __init__(self, brew_time, firstindiv, indiv, fix_time):
@@ -43,18 +44,24 @@ class Tea():
             print(self.brew_time - i)
         self.after_first_brew()
             #sleep(1)
+def main():
+    winter = Tea(90, 25, 5, True)
+    next_brew = True
+    winter.print_first_brew_time()
 
-winter = Tea(90, 25, 5, True)
-next_brew = True
-winter.print_first_brew_time()
+    while next_brew:
+        flag = input("Do you want to brew?")
+        flag.lower()
+        if flag == "y":
+            next_brew = True
+        elif flag == "n":
+            next_brew = False
+            break
+        elif flag != "y" and flag != "n":
+            print("not valid")
+            continue
+        winter.print_remaining_time()
+        winter.brews()
 
-while next_brew:
-    flag = input("Do you want to brew?")
-    flag.lower()
-    if flag == "y":
-        next_brew = True
-    elif flag == "n":
-        next_brew = False
-        break
-    winter.print_remaining_time()
-    winter.brews()
+if __name__ == '__main__':
+    main()
